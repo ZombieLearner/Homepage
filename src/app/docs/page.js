@@ -17,9 +17,12 @@ export default function DocsPage() {
         title: data.title || slug,
         slug,
         status: data.status?.toLowerCase() || 'unknown',
+        published: data.published ?? false,
       }
     })
+    .filter((note) => note.published === true) // ✅ ONLY show published notes
 
   return <DocsFilter notes={notes} />
 }
+
 
