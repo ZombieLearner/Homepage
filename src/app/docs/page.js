@@ -20,9 +20,8 @@ export default function DocsPage() {
         published: data.published ?? false,
       }
     })
-    .filter((note) => note.published === true) // ✅ ONLY show published notes
+    .filter((note) => note.published === true)
 
   return <DocsFilter notes={notes} />
 }
-
 
