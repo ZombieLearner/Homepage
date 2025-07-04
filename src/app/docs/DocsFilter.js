@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import TypewriterGlitch from '@/components/TypewriterGlitch'
 
 export default function DocsFilter({ notes }) {
   const [filter, setFilter] = useState('all')
@@ -8,14 +9,15 @@ export default function DocsFilter({ notes }) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6 text-gray-800">📚 Project Notes</h1>
-
+      <h1 className="text-4xl font-heading text-undead mb-6 shadow-glow">📚 Project Notes</h1>
+<TypewriterGlitch text="Notes from the lab of Zombie Learner 🧠" speed={60} />
       <div className="mb-6 flex flex-wrap gap-2">
         <button
           onClick={() => setFilter('all')}
           className={`px-3 py-1 rounded-full text-sm font-medium ${
-            filter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800'
-          }`}
+  filter === 'all' ? 'bg-undead text-black shadow-glow' : 'bg-zinc-800 text-gray-300'
+}`}
+
         >
           All
         </button>
@@ -32,18 +34,20 @@ export default function DocsFilter({ notes }) {
         ))}
       </div>
 
-      <ul className="space-y-4">
-        {filteredNotes.map((note) => (
-          <li key={note.slug} className="border-b pb-4">
-            <a href={`/docs/${note.slug}`} className="text-xl text-blue-600 hover:underline font-semibold">
-              {note.title}
-            </a>
-            <span className="ml-3 inline-block px-2 py-1 text-xs rounded bg-gray-100 text-gray-600">
-              {note.status}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+  {filteredNotes.map((note) => (
+    <li key={note.slug}>
+      <a
+        href={`/docs/${note.slug}`}
+        className="block border border-undead bg-brain shadow-glow rounded-lg p-4 hover:border-glitch transition-all duration-200"
+      >
+        <h2 className="font-heading text-undead text-lg mb-1">{note.title}</h2>
+        <p className="text-sm text-gray-400">Status: {note.status}</p>
+      </a>
+    </li>
+  ))}
+</ul>
+
     </div>
   )
 }

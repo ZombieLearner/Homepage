@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans">
+      <body className="bg-zombiebg text-gray-100 font-body">
         <ThemeProvider>
           <Header />
           <main className="max-w-5xl mx-auto px-6 py-8">
