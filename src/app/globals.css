@@ -37,15 +37,112 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 1ch;
+  animation: blink 1s step-end infinite;
+}
+
 @layer utilities {
-  .animate-flicker {
-    animation: flicker 1.5s infinite alternate;
+  .animate-cursor-glitch {
+    animation: glitchCursor 1s steps(1, end) infinite;
   }
+
+  @keyframes glitchCursor {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+      color: #00ff95;
+    }
+    20% {
+      transform: translateX(-1px) scaleX(1.1);
+      color: #00ff95;
+    }
+    40% {
+      transform: translateX(1px) scaleY(0.9);
+      color: #b076ff;
+    }
+    60% {
+      transform: translate(-1px, 1px);
+      color: #00ff95;
+    }
+    80% {
+      transform: translate(1px, -1px);
+      color: #b076ff;
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+      color: #00ff95;
+    }
+  }
+}
+
+@layer utilities {
+  .scanlines::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    
+
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 0, 0, 0.03),
+      rgba(255, 0, 0, 0.03) 2px,
+      transparent 2px,
+      transparent 6px
+    );
+
+    mix-blend-mode: overlay;
+
+    animation: scanShift 60s linear infinite, flicker 2s ease-in-out infinite;
+  }
+
+  @keyframes scanShift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 100vh;
+    }
+  }
+
   @keyframes flicker {
-    0% { opacity: 1; }
-    50% { opacity: 0.8; }
-    80% { opacity: 1; }
-    90% { opacity: 0.4; }
-    100% { opacity: 1; }
+  0%, 100% { opacity: 0.92; }
+  50% { opacity: 1; }
+}
+}
+
+
+
+@layer utilities {
+  .animate-scan {
+    animation: scanShift 6s linear infinite;
+  }
+}
+
+@layer utilities {
+  .crt-glow {
+    text-shadow: 0 0 2px #0f0, 0 0 4px #0f0, 0 0 6px #0f0;
+  }
+
+  .flicker {
+    animation: flicker 2s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+      opacity: 0.4;
+    }
   }
 }

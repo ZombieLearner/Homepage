@@ -8,10 +8,16 @@ export default function DocsFilter({ notes }) {
   const filteredNotes = filter === 'all' ? notes : notes.filter(note => note.status === filter)
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="relative scanlines bg-[#0a0a0a] text-foreground max-w-3xl mx-auto px-4 py-8">
+
       <h1 className="text-4xl font-heading text-undead mb-6 shadow-glow">📚 Project Notes</h1>
-<TypewriterGlitch text="Notes from the lab of Zombie Learner 🧠" speed={60} />
-      <div className="mb-6 flex flex-wrap gap-2">
+      <p className="crt-glow flicker delay-[500ms]">[ OK ] Booting Zombie Learner Terminal</p>
+      <p className="crt-glow flicker delay-[1000ms]">[ INFO ] Loading Project Notes...</p>
+
+      <TypewriterGlitch text="Notes from the lab of Zombie Learner 🧠" speed={60} />
+        
+        
+        <div className="mt-6 mb-6 flex flex-wrap gap-2">
         <button
           onClick={() => setFilter('all')}
           className={`px-3 py-1 rounded-full text-sm font-medium ${

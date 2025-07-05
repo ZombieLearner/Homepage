@@ -26,10 +26,7 @@ export default function Header() {
           <a href="/docs" className="hover:text-secondary">Projects</a>
           <a href="/about" className="hover:text-secondary">About</a>
 
-          {/* 🌙 Toggle Button */}
-          <button onClick={toggleTheme} className="hover:text-secondary" title="Toggle theme">
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+         
         </div>
       </nav>
     </header>
