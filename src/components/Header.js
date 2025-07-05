@@ -1,14 +1,21 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { Moon, Sun } from 'lucide-react'
+import useHasMounted from '@/lib/useHasMounted'
 
 export default function Header() {
+  const hasMounted = useHasMounted()
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
     const saved = localStorage.getItem('theme')
-    document.documentElement.classList.toggle('dark', saved === 'dark')
-    setTheme(saved || 'light')
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark')
+      setTheme('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      setTheme('light')
+    }
   }, [])
 
   const toggleTheme = () => {
@@ -26,10 +33,9 @@ export default function Header() {
           <a href="/docs" className="hover:text-secondary">Projects</a>
           <a href="/about" className="hover:text-secondary">About</a>
 
-         
+      
         </div>
       </nav>
     </header>
   )
 }
-
