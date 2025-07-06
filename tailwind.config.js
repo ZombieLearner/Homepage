@@ -35,4 +35,22 @@ module.exports = {
   ],
 }
 
+// tailwind.config.js
+module.exports = {
+  // ...
+  theme: {
+    extend: {
+      keyframes: {
+        zombieType: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(2px)' }, // slow bob
+        },
+      },
+      animation: {
+        zombieType: 'zombieType 4s ease-in-out infinite',
+      },
+    },
+  },
+  plugins: [],
+}
 
